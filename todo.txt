@@ -1,0 +1,11 @@
+TODO:
+
+- deploy the website
+- sizes of the clothing (if there are different sizes there should be a new item in the cart)
+- search bar 
+- all, clothing, accessories etc...
+- you may alsko like
+
+- change title and the name of the website
+- add working instagram page (footer)
+- add metatags
