@@ -54,27 +54,6 @@ a {
   margin: 60px 0px;
   color: #f02d34;
 }
-.marquee {
-  position: relative;
-  height: 400px;
-  width: 100%;
-  overflow-x: hidden;
-}
-
-.track {
-  position: absolute;
-  white-space: nowrap;
-  will-change: transform;
-  animation: marquee 15s linear infinite;
-  width: 180%;
-}
-.track:hover {
-  animation-play-state: paused;
-}
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
 
  span.text-red {
     -webkit-text-stroke: 1px #f02d34;
@@ -369,8 +348,8 @@ text-align: end;
 .product-container{
   margin-top: 15px;
   overflow: auto;
-max-height: 70vh;
-padding: 20px 10px;
+  max-height: 70vh;
+  padding: 20px 10px;
 }
 .product{
   display: flex;
@@ -875,10 +854,6 @@ margin-top: 160px;
 .total h3{
   font-size: 20px;
 }
-.track {
-  animation: marquee 10s linear infinite;
-  width: 550%;
-}
 .success-wrapper, .cancel-wrapper{
  
   min-height: 69vh;
@@ -911,4 +886,31 @@ margin-top: 160px;
   .cart-container {
     width: 100%;
   }
+}
+
+.types {
+  display: flex;
+  gap: 2.5rem;
+  padding: 10px 30px 30px 30px;
+  position: relative;
+  font-size: 1.1rem;
+  color: #324d67;
+  text-align: center;
+}
+/* @media screen and (max-width: 560px){
+  .types {
+    display: flex;
+    justify-content: center;
+  }
+} */
+.types h2 {
+  cursor: pointer;
+}
+.types .line {
+  position: absolute;
+  width: 60px;
+  height: 4px;
+  transition: all 0.25s ease;
+  bottom: 20px;
+  background-color: #f02d34;
 }

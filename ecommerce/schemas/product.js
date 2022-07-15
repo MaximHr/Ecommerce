@@ -45,6 +45,11 @@ export default {
             name: 'stars',
             title: 'Stars (1-5)',
             type: 'number'
+        },
+        {
+            name: 'sort',
+            title: 'Type (clothing or accessories)',
+            type: 'string'
         }
     ]
 }

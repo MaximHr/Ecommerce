@@ -106,14 +106,12 @@ const ProductDetails = ({product, simularProducts}) => {
     <div className='maylike-products-wrapper'>
         <h2>You May Also Like</h2>
         <div className='marquee'>
-          <div className='maylike-products-container track'>
+          <div className='maylike-products-container'>
             
             {
               simularProducts.map((item) => {
                 return(
-                  <>
-                    <Product key={item._id} product={item} />
-                  </>
+                  <Product key={item._id} product={item} />
                 )
               })
             }
@@ -148,8 +146,8 @@ export const getStaticPaths = async() => {
 export const getStaticProps = async({params:{slug}}) => {
   const query = `*[_type == "product" && slug.current=='${slug}'][0]`;
   const product = await client.fetch(query);
-
-  const queryProducts = '*[_type == "product"]';
+  console.log(product.sort)
+  const queryProducts = `*[_type == "product" && sort == '${product.sort}']`;
   const simularProducts = await client.fetch(queryProducts);
 
   return {

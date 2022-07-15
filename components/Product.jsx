@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { urlFor } from '../lib/client';
 
-const Product = ({product: {image, title, slug, price}}) => {
+const Product = ({product: {image, title, slug, price, sort}, moveLine}) => {
+  useEffect(() => {
+    console.log(sort);
+  }, [moveLine])
   return (
-    <div>
+    <div style={
+      moveLine === 2 && sort === 'accessories' ? {display: 'none'} :
+      moveLine === 3 && sort === 'clothing' ? {display: 'none'} :
+      {}
+    }>
       <Link href={`/product/${slug.current}`}>
-        <div className="product-card">
+        <div className="product-card track">
           <img 
             width={250} 
             height={250} 
