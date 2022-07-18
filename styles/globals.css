@@ -63,7 +63,7 @@ a {
   color: gray;
   font-size: 19px;
   font-weight: bold;
-  font-family: 'Metal Mania', cursive !important;
+  font-family: 'Metal Mania',  monospace !important;
 }
 .cart-icon{
   font-size: 25px;
@@ -913,4 +913,42 @@ margin-top: 160px;
   transition: all 0.25s ease;
   bottom: 20px;
   background-color: #f02d34;
+}
+.sort-products {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.input {
+  width: 210px;
+  height: 35px;
+  padding-left: 5px;
+  outline: none;
+  border: none;
+  font-size: 1.1rem;
+  padding-right: 20px;
+  border-bottom: 3px solid #324d67;
+}
+.search-bar {
+  margin-right: 40px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.search-bar svg {
+  position: relative;
+  cursor: pointer;
+  transform: scale(1.33) translate(-100%);
+  color: #324d67;
+}
+@media screen and (max-width: 725px){
+  .sort-products {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .search-bar {
+    margin-right: 0;
+    margin-bottom: 2rem;
+  }
 }

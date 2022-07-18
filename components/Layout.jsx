@@ -6,7 +6,7 @@ import Footer from './Footer';
 const Layout = ({children}) => {
   return (
     <div className='layout'>
-      <Head>
+      <Head lang='en'>
         <title>Penis</title>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />

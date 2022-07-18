@@ -1,9 +1,7 @@
 TODO:
 
-- deploy the website
 - sizes of the clothing (if there are different sizes there should be a new item in the cart)
 - integrate payment
-- search bar 
 - you may alsko like
 - change title and the name of the website
 - add working instagram page (footer)
