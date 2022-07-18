@@ -6,7 +6,11 @@ const Product = ({product: {image, title, slug, price, sort}, moveLine, searchTe
 
   const [isSearched, setIsSearched] = useState(true);
   useEffect(() => {
-    setIsSearched(title.toLowerCase().includes(searchText.toLowerCase()))
+    if(searchText && title) {
+      setIsSearched(title.toLowerCase().includes(searchText.toLowerCase()))
+    } else {
+      setIsSearched(true);
+    }
   }, [searchText])
   
   return (

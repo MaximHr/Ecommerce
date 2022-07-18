@@ -4,7 +4,7 @@ import {client} from '../lib/client';
 import {BiSearch} from 'react-icons/bi';
 import { type } from 'os';
 
-const index = ({products, bannerData}) => {
+const Index = ({products, bannerData}) => {
     const [moveLine, setMoveLine] = useState(1);
     const [searchText, setSearchText] = useState('');
 
@@ -72,4 +72,4 @@ export const getServerSideProps = async() => {
     }
 }
 
-export default index;
+export default Index;
