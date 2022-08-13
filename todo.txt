@@ -1,6 +1,6 @@
 TODO:
 
 - is the product availiable
-- themes
-- check if .env is working when upload on vercel
-- you may alsko like
+- process.env is not working 
+- you may alsko like ( na telefon ne e kakto trqbva)
+-navbarut na telefon nqkak si da stane po dobur
