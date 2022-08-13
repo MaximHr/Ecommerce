@@ -50,6 +50,12 @@ export default {
             name: 'sort',
             title: 'Type (clothing or accessories)',
             type: 'string'
-        }
+        },
+        {
+            name:'size',
+            title:'Add sizes',
+            type: 'array',
+            of: [{type: 'string'}],
+        },
     ]
 }

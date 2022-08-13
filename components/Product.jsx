@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useStateContext } from '../context/StateContext';
 import { urlFor } from '../lib/client';
 
 const Product = ({product: {image, title, slug, price, sort}, moveLine, searchText}) => {
 
+  const { toggleThemes } = useStateContext();
   const [isSearched, setIsSearched] = useState(true);
+  
   useEffect(() => {
     if(searchText && title) {
       setIsSearched(title.toLowerCase().includes(searchText.toLowerCase()))
@@ -30,7 +33,7 @@ const Product = ({product: {image, title, slug, price, sort}, moveLine, searchTe
             className='product-image'
           />
           <p className="product-name">{title}</p>
-          <p className="product-price">{price} USD</p>
+          <p className="product-price" style={toggleThemes ? {color: 'white'} : {} }>{price} USD</p>
 
         </div>
       </Link>

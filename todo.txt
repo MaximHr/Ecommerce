@@ -1,7 +1,6 @@
 TODO:
 
-- sizes of the clothing (if there are different sizes there should be a new item in the cart)
-- integrate payment
+- is the product availiable
+- themes
+- check if .env is working when upload on vercel
 - you may alsko like
-- change title and the name of the website
-- add working instagram page (footer)

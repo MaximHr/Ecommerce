@@ -1,8 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
 import { urlFor } from '../lib/client';
+import { useStateContext } from '../context/StateContext';
 
 const FooterBanner = ({banner}) => {
+
+  const { toggleThemes } = useStateContext();
+
   return (
     <div className='footer-banner-container'>
       <div className='banner-desc'>
@@ -14,7 +18,7 @@ const FooterBanner = ({banner}) => {
           <h3>{banner.midText}</h3>
           <h3>{banner.desc}</h3>
           <Link href={`/product/${banner.product}`}>
-            <button type='button'>{banner.buttonText}</button>
+            <button type='button' style={toggleThemes ? {backgroundColor: 'rgb(171, 6, 4)'} : {} }>{banner.buttonText}</button>
           </Link>
         </div>
         <img 

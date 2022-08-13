@@ -9,30 +9,77 @@ export const StateContext = ({children}) => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [totalQuantity, setTotalQuantity] = useState(0);
     const [qty, setQty] = useState(1);
+    const [clickedSize, setClickedSize] = useState(0);
+    
+    const [toggleThemes, setToggleThemes] = useState(false);
+
+    const getSize = (index) => {
+        setClickedSize(index);
+    }
 
     const onAdd = (product, quantity) => {
-        const checkProductInCart = cartItems.find(item => item._id == product._id);
+        let individualProducts = [];
+        let checkProductInCart = [];
+        let correctIndex = 0;
         
-        setTotalPrice(prev => prev + (product.price * quantity));
+        if(product.size) {
+            for(let i = 0;i < product.size.length; i++) {
+                individualProducts.push({...product, yourSize : product.size[i], _id: product._id + Math.random() * 1000})
+            }
+            
+            correctIndex = clickedSize;
+
+            checkProductInCart = cartItems.find(item => item._id == individualProducts[correctIndex]._id);
+        
+        }
+        if(!product.size) {
+            individualProducts.push(product);
+
+            correctIndex = 0;
+
+            checkProductInCart = cartItems.find(item => item._id == individualProducts[correctIndex]._id);
+
+            setClickedSize(0);
+        }
+
+        console.log(individualProducts, clickedSize);
+        
+        
+        setTotalPrice(prev => prev + (individualProducts[correctIndex].price * quantity));
         setTotalQuantity(prev => prev + quantity);
 
+        // if this tshirt is already in the cart
         if(checkProductInCart) {   
+            
             const updatedCartItems = cartItems.map(item => {
-                if(item._id == product._id) {
+                if(item._id == individualProducts[correctIndex]._id) {
                     return {
                         ...item,
-                        quantity: item.quantity + quantity
+                        quantity: item.quantity + quantity,
+                        // yourSize: clickedSize
                         
+                    }
+                } else {
+                    return {
+                        ...item
                     }
                 }
             })
+            console.log(updatedCartItems)
             setCartItems(updatedCartItems);
+
         } else {
-            product.quantity = quantity;
-            setCartItems([...cartItems, {...product}]);
+            //if this tshirt is not bought yet
+            individualProducts[correctIndex].yourSize = correctIndex;
+            individualProducts[correctIndex].quantity = quantity;
+            
+            setCartItems([...cartItems, individualProducts[correctIndex]]);
+            console.log(cartItems)
         }
         toast.success(`${qty} ${product.title} added to the cart!`)
     }
+
+
     const incQty = () => {
         setQty((prev) => prev + 1);
     }
@@ -43,7 +90,7 @@ export const StateContext = ({children}) => {
         });
     }
     const toggleCartItemQuantity = (item, value) => {
-        const index = cartItems.findIndex((product) => product._id === item._id);
+        const index = cartItems.findIndex((product) => product._id === item._id );
         const newCartItems = [...cartItems];
 
         if(value == 'dec') {
@@ -89,7 +136,14 @@ export const StateContext = ({children}) => {
             onAdd,
             setShowCart,
             toggleCartItemQuantity,
-            onRemove
+            onRemove,
+            setCartItems,
+            setTotalPrice,
+            setTotalQuantity,
+            clickedSize,
+            getSize,
+            toggleThemes,
+            setToggleThemes
         }}>
             {children}
         </Context.Provider>

@@ -5,9 +5,9 @@ import {Product} from '../../components';
 import { useStateContext } from '../../context/StateContext';
 
 const ProductDetails = ({product, simularProducts}) => {
-  const {image, title, details, price, reviews, stars} = product;
+  const {image, title, details, price, reviews, stars, size} = product;
   const [index, setIndex] = useState(0);
-  const {decQty, incQty, qty, onAdd, setShowCart} = useStateContext();
+  const {decQty, incQty, qty, onAdd, setShowCart, clickedSize, getSize, toggleThemes} = useStateContext();
 
   return (
     <div>
@@ -30,9 +30,9 @@ const ProductDetails = ({product, simularProducts}) => {
       </div>
 
       <div className="product-detail-desc">
-        <h1>{title}</h1>
+        <h1 style={toggleThemes ? {color: 'rgb(255, 255, 255)'} : {} }>{title}</h1>
         <div className="reviews">
-          <div>
+          <div style={toggleThemes ? {color: 'rgb(171, 6, 4)'} : {} }>
             {
               stars === 1 ? (
                 <>
@@ -82,22 +82,45 @@ const ProductDetails = ({product, simularProducts}) => {
             ({reviews})
           </p>
         </div>
-        <h4>Details: </h4>
+        <h4 style={toggleThemes ? {color: 'rgb(255, 255, 255)'} : {} }>Details: </h4>
         <p>{details}</p>
-        <p className="price">{price} USD</p>
+        <p className="price" style={toggleThemes ? {color: 'rgb(171, 6, 4)'} : {} }>{price} USD</p>
         <div className="quantity">
-          <h3>Quantity:</h3>
+          <h3 style={toggleThemes ? {color: 'rgb(255, 255, 255)'} : {} }>Quantity:</h3>
           <p className="quantity-desc">
             <span className="minus" onClick={decQty}><AiOutlineMinus /></span>
             <span className="num">{qty}</span>
             <span className="plus" onClick={incQty}><AiOutlinePlus /></span>
           </p>
         </div>
-        <div className="buttons">
-          <button type="button" className="add-to-cart" onClick={() => {
+        {
+          size ? (
+        <div className='sizes-container'>
+          <h3 style={toggleThemes ? {color: 'rgb(255, 255, 255)'} : {} }>Size: </h3>
+          <div className="sizes">
+            {
+              size?.map((s ,index) => {
+                return(
+                  <div 
+                    style={toggleThemes ? {color: 'rgb(255, 255, 255)'} : {} }
+                    key={index}
+                    onClick={() => getSize(index)} 
+                    className={`size ${clickedSize === index ? 'clicked' : ''} ${toggleThemes ? 'dark' : ''}`}>
+                      {s}
+                    </div>
+                )
+              })
+            }
+          </div>
+        </div>
+          ) : (<></>)
+        }
+        
+        <div className="buttons" >
+          <button style={toggleThemes ? {color: 'rgb(171, 6, 4)'} : {} } type="button" className="add-to-cart" onClick={() => {
             onAdd(product, qty);
           }}>Add to Cart</button>
-          <button type="button" className="buy-now" onClick={() => {
+          <button type="button" style={toggleThemes ? {backgroundColor: 'rgb(171, 6, 4)'} : {} } className="buy-now" onClick={() => {
             onAdd(product, qty);
             setShowCart(true);
           }}>Buy Now</button>
